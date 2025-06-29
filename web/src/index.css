@@ -1,0 +1,9 @@
+/* src/index.css */
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, #003f5b, #2b4b7d, #5f5195);
+  overflow: hidden;
+}

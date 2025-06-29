@@ -1,0 +1,73 @@
+/* web/src/AdminLogin.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+
+.admin-container {
+  position: fixed; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: transparent; /* gradient global en index.css */
+}
+
+.admin-box {
+  width: 320px;
+  padding: 2rem;
+  background: rgba(0,0,0,0.4);
+  border: 2px solid rgba(255,255,255,0.4);
+  border-radius: 12px;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  color: #FFF;
+}
+
+.admin-box h2 {
+  margin-bottom: 1.5rem;
+}
+
+.admin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.admin-form label {
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+.admin-form input {
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+  background: transparent;
+  border: 2px solid rgba(255,255,255,0.6);
+  border-radius: 6px;
+  color: #FFF;
+}
+
+.admin-form input::placeholder {
+  color: rgba(255,255,255,0.6);
+}
+
+.admin-form button {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  background: #FFF;
+  color: #2c1a5b;  /* oscuro del gradiente */
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.admin-form button:hover {
+  background: #e0e0e0;
+}
+
+.back-btn {
+  margin-top: 1rem;
+  background: transparent;
+  border: none;
+  color: #FFF;
+  font-size: 0.9rem;
+  cursor: pointer;
+  text-decoration: underline;
+}

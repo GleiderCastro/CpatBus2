@@ -1,0 +1,29 @@
+
+services:
+  api:
+    build: ./api
+    image: cpatbus-api 
+    ports:
+      - "8000:8000"
+    env_file: 
+      - ./api/.env
+    volumes:
+      - ./videos_procesados:/app/videos_procesados 
+    restart: unless-stopped       # Reinicia a menos que se detenga manualmente :contentReference[oaicite:0]{index=0}
+
+
+  # rtmp:
+  #   image: alfg/nginx-rtmp:latest
+  #   container_name: rtmp-server
+  #   volumes:
+  #     - ./nginx.conf:/etc/nginx/nginx.conf:ro
+  #   ports:
+  #     - "1935:1935"    # RTMP stream
+  #     - "8080:80"      # HTTP test page (evita colisión con web)
+  #   restart: unless-stopped
+
+  web:
+    build: ./web
+    ports:
+      - "80:80"
+    restart: unless-stopped

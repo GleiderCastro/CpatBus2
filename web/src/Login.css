@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+
+.login-screen-container {
+  position: fixed; inset: 0;
+  display: flex;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(90deg, #003f5b, #2b4b7d, #5f5195);
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.login-screen-container.fade-in {
+  opacity: 1;
+}
+
+.login-screen-container.fade-out {
+  opacity: 0;
+}
+
+/* Left panel (60%) */
+.login-screen-left {
+  flex: 6;
+  display: flex;
+  align-items: center;
+  padding-left: 5%;
+}
+
+.welcome-box {
+  max-width: 80%;
+}
+
+.welcome-box h1 {
+  color: #FFFFFF;
+  font-size: 4rem;
+  margin: 0 0 1rem 0;
+}
+
+.welcome-box p {
+  color: #FFFFFF;
+  font-size: 1.25rem;
+  line-height: 1.5;
+}
+
+/* Right panel (40%) */
+.login-screen-right {
+  flex: 4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; /* Cambié a columna para ordenar los elementos verticalmente */
+}
+
+.role-box {
+  text-align: center;
+}
+
+.role-box h3 {
+  color: #FFFFFF;
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.role-box button {
+  display: block;
+  width: 80%;
+  max-width: 250px;
+  margin: 0 auto 20px auto;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #FFFFFF;
+  background: transparent;
+  border: 2px solid #FFFFFF;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+  text-transform: uppercase;
+}
+
+.role-box button:hover {
+  background: #FFFFFF;
+  color: #2c1a5b; /* o #5f2c82 para tonos morados */
+}
+
+/* Estilos para el botón que agregamos */
+.test-button-container {
+  margin-top: 30px; /* Agregamos un margen superior para separar el botón */
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.super-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 14px 28px;
+  background: linear-gradient(145deg, #0f0f0f, #1c1c1c);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 100px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.4s ease-in-out;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  z-index: 1;
+}
+
+.super-button::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 0deg, #00ffff, #ff00ff, #00ffff);
+  animation: rotate 4s linear infinite;
+  z-index: -2;
+}
+
+.super-button::after {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  background: #0a0a0a;
+  border-radius: inherit;
+  z-index: -1;
+}
+
+.super-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 40px rgba(0, 255, 255, 0.2);
+}
+
+.super-button:hover .arrow {
+  transform: translateX(6px);
+}
+
+.arrow {
+  width: 22px;
+  height: 22px;
+  transition: transform 0.3s ease-in-out;
+  color: #00ffff;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/static/css/main.fa3afde0.css",
+    "main.js": "/static/js/main.bdf20220.js",
+    "static/media/persona_detectada.svg": "/static/media/persona_detectada.5587250536e4ed21e2cf6204c7a64e00.svg",
+    "static/media/bus.svg": "/static/media/bus.ba0a7c192578422d00c98fe2af61d21d.svg",
+    "static/media/camara.svg": "/static/media/camara.0746bf921c9c13318d258cc3803b3276.svg",
+    "index.html": "/index.html",
+    "main.fa3afde0.css.map": "/static/css/main.fa3afde0.css.map",
+    "main.bdf20220.js.map": "/static/js/main.bdf20220.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.fa3afde0.css",
+    "static/js/main.bdf20220.js"
+  ]
+}
