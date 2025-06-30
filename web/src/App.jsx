@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Routes, Route, useNavigate, Navigate } from "react-router-dom";
 
 import Splash from "./Splash";
 import LoginScreen from "./Login";
@@ -8,59 +9,77 @@ import AdminDashboard from "./AdminDashboard";
 import ReportsDashboard from "./ReportsDashboard";
 import ProbarModelo from "./ProbarModelo";
 
-
 export default function App() {
-  const [screen, setScreen] = useState("splash");
   const [role, setRole] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const navigate = useNavigate();
 
-  // Navegación simple por estado
-  const goTo = (nextScreen) => setScreen(nextScreen);
+  const handleSplashDone = () => navigate("/login");
 
-  // Handlers
-  const handleSplashDone = () => goTo("login");
   const handleLoginSelect = (sel) => {
     if (sel === "admin") {
-      goTo("adminLogin");
+      navigate("/admin-login");
     } else {
       setRole("user");
       setIsAuthenticated(true);
-      goTo("dashboard");
+      navigate("/dashboard");
     }
   };
+
   const handleAdminSubmit = () => {
     setRole("admin");
     setIsAuthenticated(true);
-    goTo("dashboard");
+    navigate("/dashboard");
   };
+
   const handleLogout = () => {
     setRole(null);
     setIsAuthenticated(false);
-    goTo("login");
+    navigate("/login");
   };
+
   const handleProbarModelo = () => {
     setRole("user");
     setIsAuthenticated(true);
-    goTo("probarModelo");
+    navigate("/probar-modelo");
   };
 
-  // Renderizado condicional
-  switch (screen) {
-    case "splash":
-      return <Splash onDone={handleSplashDone} />;
-    case "login":
-      return <LoginScreen onSelect={handleLoginSelect} onProbarModelo={handleProbarModelo} />;
-    case "adminLogin":
-      return <AdminLogin onBack={handleLogout} onLogin={handleAdminSubmit} />;
-    case "dashboard":
-      return isAuthenticated ? <Dashboard onBack={handleLogout} /> : <LoginScreen onSelect={handleLoginSelect} onProbarModelo={handleProbarModelo} />;
-    case "adminDashboard":
-      return isAuthenticated && role === "admin" ? <AdminDashboard onHome={handleLogout} onReports={() => goTo("reports")} /> : <LoginScreen onSelect={handleLoginSelect} onProbarModelo={handleProbarModelo} />;
-    case "reports":
-      return isAuthenticated && role === "admin" ? <ReportsDashboard onBack={() => goTo("adminDashboard")} /> : <LoginScreen onSelect={handleLoginSelect} onProbarModelo={handleProbarModelo} />;
-    case "probarModelo":
-      return isAuthenticated ? <ProbarModelo /> : <LoginScreen onSelect={handleLoginSelect} onProbarModelo={handleProbarModelo} />;
-    default:
-      return <Splash onDone={handleSplashDone} />;
-  }
+  return (
+    <Routes>
+      <Route path="/" element={<Splash onDone={handleSplashDone} />} />
+      <Route
+        path="/login"
+        element={<LoginScreen onSelect={handleLoginSelect} onProbarModelo={handleProbarModelo} />}
+      />
+      <Route
+        path="/admin-login"
+        element={<AdminLogin onBack={() => navigate("/login")} onLogin={handleAdminSubmit} />}
+      />
+      <Route
+        path="/dashboard"
+        element={isAuthenticated ? <Dashboard onBack={handleLogout} /> : <Navigate to="/login" />}
+      />
+      <Route
+        path="/admin-dashboard"
+        element={isAuthenticated && role === "admin" ? (
+          <AdminDashboard onHome={handleLogout} onReports={() => navigate("/reports")} />
+        ) : (
+          <Navigate to="/login" />
+        )}
+      />
+      <Route
+        path="/reports"
+        element={isAuthenticated && role === "admin" ? (
+          <ReportsDashboard onBack={() => navigate("/admin-dashboard")} />
+        ) : (
+          <Navigate to="/login" />
+        )}
+      />
+      <Route
+        path="/probar-modelo"
+        element={isAuthenticated ? <ProbarModelo /> : <Navigate to="/login" />}
+      />
+      <Route path="*" element={<Navigate to="/" />} />
+    </Routes>
+  );
 }

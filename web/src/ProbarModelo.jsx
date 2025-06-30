@@ -1,9 +1,11 @@
 import React, { useState, useRef, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./ProbarModelo.css";
 
 const API_URL = "http://localhost:8000"; // Dirección de tu API
 
 const ProbarModelo = () => {
+  const navigate = useNavigate();
   /* ---------- estado ---------- */
   const [streamURL, setStreamURL] = useState(null);
   const [videoURL, setVideoURL] = useState(null); // para MP4 final
@@ -49,7 +51,6 @@ const ProbarModelo = () => {
           setStreamURL(null);
           setShowSuccess(true);
           setProgress(100);
-          window.location.reload(); // Recarga la página automáticamente al completar el procesamiento
           if (wsRef.current) wsRef.current.close();
         } else {
           fakeProgress = Math.min(fakeProgress + Math.random() * 7, 98);
