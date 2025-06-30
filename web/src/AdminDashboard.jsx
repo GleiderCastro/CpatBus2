@@ -7,6 +7,10 @@ export default function AdminDashboard({ onHome, onReports }) {
   const [passengerCount, setPassengerCount] = useState(0);
   const capacity = 30;
 
+  const handleReports = () => {
+    if (onReports) onReports();
+  };
+
   useEffect(() => {
     const timer = setInterval(() => setTime(new Date()), 1000);
     return () => clearInterval(timer);
